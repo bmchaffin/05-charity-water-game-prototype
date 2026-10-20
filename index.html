@@ -3,11 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Game</title>
+    <title>Water Works | Charity: water</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to the Charity Water Game Prototype</h1>
+    <main class="game-shell">
+        <header class="topbar">
+            <a class="brand" href="#top" aria-label="Charity: water home">
+                <img src="img/cw_logo_horizontal.png" alt="charity: water">
+            </a>
+            <div class="round-label"><span class="status-dot"></span> Field day 01</div>
+        </header>
+
+        <section class="game-layout" id="top" aria-labelledby="game-title">
+            <div class="intro-copy">
+                <p class="eyebrow">Small actions. Big impact.</p>
+                <h1 id="game-title">Every drop<br><span>counts.</span></h1>
+                <p class="intro-text">Help fill the community tank one bucket at a time. Tap the can to collect clean water.</p>
+
+                <div class="score-panel" aria-live="polite">
+                    <div>
+                        <p class="score-label">Your collected water</p>
+                        <p class="score"><span id="score">0</span> <small>ml</small></p>
+                    </div>
+                    <div class="drop-badge" aria-hidden="true">+</div>
+                </div>
+
+                <div class="leak-alert" id="leak-alert" role="alert" hidden>
+                    <div>
+                        <p class="leak-label">Uh-oh, a leak!</p>
+                        <p class="leak-message">Water is draining from the tank. Fix it before you lose your hard work.</p>
+                    </div>
+                    <button class="fix-button" id="fix-button" type="button">Fix leak</button>
+                </div>
+
+                <div class="goal-row">
+                    <span>Daily goal</span>
+                    <strong><span id="goal-score">0</span> / 1,000 ml</strong>
+                </div>
+                <div class="progress-track" role="progressbar" aria-label="Daily water goal" aria-valuemin="0" aria-valuemax="1000" aria-valuenow="0">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="game-actions">
+                    <p class="endless-note">Keep collecting endlessly, or start a fresh day.</p>
+                    <button class="reset-button" id="reset-button" type="button">Reset game</button>
+                </div>
+            </div>
+
+            <div class="collector-area">
+                <div class="collector-note">Tap to collect <span>+10 ml</span></div>
+                <button class="water-button" id="water-button" type="button" aria-label="Collect 10 milliliters of water">
+                    <span class="ripple ripple-one"></span>
+                    <span class="ripple ripple-two"></span>
+                    <img src="img/water-can-transparent.png" alt="Water can">
+                    <span class="tap-label">COLLECT<br>WATER</span>
+                </button>
+                <p class="helper-text" id="helper-text">One tap makes a difference.</p>
+            </div>
+        </section>
+        <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
+
+        <footer class="footer-note">
+            <span class="footer-line"></span>
+            <p>100% of public donations fund clean water projects.</p>
+            <span class="footer-line"></span>
+        </footer>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>

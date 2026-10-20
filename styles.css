@@ -1,15 +1,124 @@
-/* Charity: water Brand Colors
+:root {
+	--ink: #111111;
+	--blue: #2e9df7;
+	--blue-dark: #0874c9;
+	--yellow: #ffc907;
+	--paper: #f5fbff;
+	--mint: #d9f1ed;
+}
 
-Primary Colors:
-- Yellow:     #FFC907
-- Blue:       #2E9DF7
+* {
+	box-sizing: border-box;
+}
 
-Secondary Colors:
-- Light Blue: #8BD1CB
-- Green:      #4FCB53
-- Orange:     #FF902A
-- Red:        #F5402C
-- Dark Green: #159A48
-- Pink:       #F16061
+body {
+	margin: 0;
+	min-width: 320px;
+	color: var(--ink);
+	background: var(--paper);
+	font-family: "Trebuchet MS", Arial, sans-serif;
+}
 
-*/
+body::before {
+	position: fixed;
+	z-index: -1;
+	inset: 0;
+	content: "";
+	opacity: .5;
+	background-image: radial-gradient(#8bd1cb 1px, transparent 1px);
+	background-size: 22px 22px;
+}
+
+.game-shell {
+	width: min(1180px, calc(100% - 64px));
+	min-height: 100vh;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.topbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 28px 0;
+	border-bottom: 1px solid rgba(17, 17, 17, .14);
+}
+
+.brand img { width: 180px; height: auto; display: block; }
+.round-label { font-size: 12px; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; }
+.status-dot { display: inline-block; width: 8px; height: 8px; margin-right: 7px; border-radius: 50%; background: #4fcb53; }
+
+.game-layout {
+	flex: 1;
+	display: grid;
+	grid-template-columns: minmax(280px, .9fr) minmax(350px, 1.1fr);
+	align-items: center;
+	gap: clamp(40px, 8vw, 130px);
+	padding: 70px 5% 48px;
+}
+
+.eyebrow { margin: 0 0 16px; color: var(--blue-dark); font-size: 13px; font-weight: bold; letter-spacing: .13em; text-transform: uppercase; }
+h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(58px, 8vw, 104px); font-weight: normal; line-height: .88; letter-spacing: -3px; }
+h1 span { color: var(--blue-dark); }
+.intro-text { max-width: 390px; margin: 28px 0 38px; font-size: 17px; line-height: 1.55; }
+
+.score-panel { display: flex; align-items: center; justify-content: space-between; max-width: 390px; padding: 20px 22px; background: var(--yellow); }
+.score-label, .goal-row { margin: 0; font-size: 11px; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; }
+.score { margin: 6px 0 0; font-family: Georgia, serif; font-size: 42px; line-height: 1; }
+.score small { font-family: "Trebuchet MS", Arial, sans-serif; font-size: 15px; font-weight: bold; }
+.drop-badge { display: grid; width: 38px; height: 38px; place-items: center; border: 2px solid var(--ink); border-radius: 50%; font-size: 25px; }
+.leak-alert { display: flex; align-items: center; justify-content: space-between; max-width: 390px; gap: 16px; margin-top: 14px; padding: 14px 16px; border-left: 6px solid #f5402c; background: #fff0ed; }
+.leak-alert[hidden] { display: none; }
+.leak-label { margin: 0 0 3px; color: #c52e20; font-size: 12px; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; }
+.leak-message { margin: 0; font-size: 12px; line-height: 1.35; }
+.fix-button { flex: 0 0 auto; padding: 9px 12px; border: 0; border-radius: 0; cursor: pointer; background: #f5402c; color: white; font: bold 11px "Trebuchet MS", Arial, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+.fix-button:hover { background: var(--ink); }
+.fix-button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+.goal-row { display: flex; justify-content: space-between; max-width: 390px; margin-top: 26px; }
+.progress-track { max-width: 390px; height: 9px; margin-top: 10px; overflow: hidden; background: #cce5ed; }
+.progress-fill { width: 0; height: 100%; background: var(--blue-dark); transition: width .25s ease; }
+.game-actions { display: flex; align-items: center; justify-content: space-between; max-width: 390px; gap: 18px; margin-top: 20px; }
+.endless-note { margin: 0; color: #4c626d; font-size: 12px; line-height: 1.35; }
+.reset-button { flex: 0 0 auto; padding: 9px 13px; border: 1px solid var(--ink); border-radius: 0; cursor: pointer; background: transparent; color: var(--ink); font: bold 11px "Trebuchet MS", Arial, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+.reset-button:hover { background: var(--ink); color: white; }
+.reset-button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+.collector-area { position: relative; display: flex; flex-direction: column; align-items: center; }
+.collector-note { z-index: 1; align-self: flex-end; margin: 0 11% -18px 0; padding: 10px 14px; background: var(--ink); color: white; font-size: 12px; font-weight: bold; transform: rotate(3deg); }
+.collector-note span { color: var(--yellow); }
+.water-button { position: relative; width: min(390px, 80vw); aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; cursor: pointer; background: var(--blue); box-shadow: 0 16px 0 var(--blue-dark), 0 26px 30px rgba(8, 116, 201, .2); transition: transform .12s ease, box-shadow .12s ease; }
+.water-button:hover { transform: translateY(-4px); }
+.water-button:active { transform: translateY(9px); box-shadow: 0 7px 0 var(--blue-dark), 0 14px 24px rgba(8, 116, 201, .2); }
+.water-button:focus-visible { outline: 4px solid var(--yellow); outline-offset: 7px; }
+.water-button img { position: absolute; width: 54%; height: 54%; object-fit: contain; left: 23%; top: 15%; filter: drop-shadow(5px 8px 0 rgba(17, 17, 17, .12)); }
+.tap-label { position: absolute; right: 40%; bottom: 15%; color: white; font-size: 13px; font-weight: bold; line-height: 1.2; letter-spacing: .13em; text-align: center; }
+.ripple { position: absolute; border: 2px solid rgba(255, 255, 255, .7); border-radius: 50%; }
+.ripple-one { width: 22px; height: 22px; top: 17%; right: 18%; }
+.ripple-two { width: 11px; height: 11px; top: 28%; right: 11%; }
+.helper-text { margin: 28px 0 0; font-family: Georgia, serif; font-size: 18px; }
+.confetti-layer { position: fixed; z-index: 5; inset: 0; overflow: hidden; pointer-events: none; }
+.water-droplet { position: absolute; border-radius: 50% 50% 50% 0; background: var(--blue); opacity: 0; transform: translate(-50%, -50%) rotate(-45deg); }
+.water-droplet:nth-child(3n) { background: var(--blue-dark); }
+.water-droplet:nth-child(4n) { background: var(--mint); border: 1px solid var(--blue); }
+.footer-note { display: flex; align-items: center; gap: 18px; padding: 0 0 28px; color: #4c626d; font-size: 11px; text-align: center; }
+.footer-note p { margin: 0; }
+.footer-line { height: 1px; flex: 1; background: #b7d8df; }
+
+@media (max-width: 700px) {
+	.game-shell { width: min(100% - 36px, 520px); }
+	.topbar { padding: 20px 0; }
+	.brand img { width: 150px; }
+	.round-label { font-size: 10px; }
+	.game-layout { display: flex; flex-direction: column; gap: 48px; align-items: stretch; padding: 52px 0 40px; }
+	h1 { font-size: clamp(60px, 18vw, 88px); }
+	.intro-text { margin: 24px 0 28px; }
+	.score-panel, .goal-row, .progress-track { max-width: none; }
+	.leak-alert { max-width: none; }
+	.game-actions { max-width: none; }
+	.collector-area { order: -1; }
+	.collector-note { margin-right: 5%; }
+	.water-button { width: min(330px, 82vw); }
+	.footer-line { display: none; }
+	.footer-note { justify-content: center; padding-bottom: 20px; }
+}
